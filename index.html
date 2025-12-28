@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Bodyguard Group — Demo</title>
+  <link rel="icon" href="assets/images/icon.jpg" />
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="header-left">
+        <a href="#" data-page="home" class="logo-link"><img src="assets/images/logo.png" alt="The Bodyguard Group" class="logo"></a>
+      </div>
+
+      <nav class="main-nav header-center" role="navigation" aria-label="Main navigation">
+          <a href="#" data-page="personnel">Personnel</a>
+          <a href="#" data-page="groups">Groups</a>
+          <a href="#" data-page="reviews">Reviews</a>
+          <a href="#" data-page="videos">Videos</a>
+      </nav>
+
+      <div class="header-right">
+        <form class="search-form" action="/search" method="get" role="search">
+          <input type="search" name="q" placeholder="Search" aria-label="Search site">
+          <button type="submit" aria-label="Submit search">🔍</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="border-bar"></div>
+  </header>
+
+  <main id="main-content" class="site-main" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="border-bar"></div>
+    <div class="footer-columns full-width">
+      <div class="container columns-inner">
+        <div class="col social">
+          <!-- social icons (replace hrefs with actual links later) -->
+          <a href="#" aria-label="Twitter" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.92c-.64.28-1.32.48-2.04.56.73-.44 1.28-1.12 1.54-1.94-.68.4-1.44.68-2.24.84C18.9 4.6 17.9 4 16.78 4c-1.6 0-2.9 1.3-2.9 2.9 0 .23.03.46.08.68C10.1 7.48 7 5.9 5 3.4c-.25.44-.4.96-.4 1.5 0 1.04.53 1.96 1.34 2.5-.5-.02-.98-.16-1.4-.4v.04c0 1.4.98 2.56 2.28 2.82-.24.06-.5.1-.76.1-.18 0-.36-.02-.54-.06.36 1.12 1.4 1.94 2.64 1.96C7.3 18.1 5.7 18.8 3.98 18.8c-.26 0-.52-.02-.78-.06 1.46.94 3.18 1.5 5.04 1.5 6.05 0 9.36-5.02 9.36-9.36v-.43c.64-.46 1.18-1.04 1.62-1.7-.6.28-1.24.48-1.9.56z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 11.93 2 6.36 2 2 6.48 2 12.07 2 17.12 5.66 21.2 10.38 22v-7.04H8.08v-2.9h2.3V9.41c0-2.28 1.37-3.53 3.37-3.53.98 0 2.01.18 2.01.18v2.21h-1.13c-1.12 0-1.46.69-1.46 1.4v1.68h2.5l-.4 2.9h-2.1V22C18.34 21.2 22 17.12 22 12.07z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2s-.2-1.7-.8-2.4c-.8-.9-1.7-.9-2.1-1C16.6 2 12 2 12 2s-4.6 0-8.6.8c-.4 0-1.3.1-2.1 1C.2 4.5 0 6.2 0 6.2S0 8 0 9.8v.4C0 11.8.2 13.6.2 13.6s.2 1.7.8 2.4c.8.9 1.9.9 2.4 1 1.7.2 7.1.6 8.7.6s4.6-.4 6.3-.6c.4 0 1.3-.1 2.1-1 .6-.7.8-2.4.8-2.4s.2-1.8.2-3.6v-.4c0-1.8-.2-3.6-.2-3.6zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.001 2h9.998C19.325 2 22 4.675 22 8v8c0 3.325-2.675 6-5.999 6H7.001C3.676 22 1 19.325 1 16V8c0-3.325 2.676-6 6.001-6zM12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5zm4.5-.75a.875.875 0 1 0 0 1.75.875.875 0 0 0 0-1.75z"/></svg>
+          </a>
+        </div>
+        <div class="col"><a href="#" data-page="about">About</a></div>
+        <div class="col"><a href="#" data-page="contact">Contact</a></div>
+      </div>
+    </div>
+    <div class="container">
+      <small>© <span id="year">2025</span> Lauren Streich</small>
+    </div>
+  </footer>
+
+  <script src="assets/carousel.js"></script>
+  <script src="assets/load.js"></script>
+</body>
+</html>
