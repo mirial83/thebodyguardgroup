@@ -4,7 +4,7 @@ function setYear(){
   el.textContent = '2025';
 }
 
-async function loadPage(name, push=true){
+async function loadPage(name){
   const main = document.getElementById('main-content');
   try{
     const res = await fetch(`pages/${name}.html`);
@@ -21,7 +21,6 @@ async function loadPage(name, push=true){
         }catch(e){ console.warn('Carousel init failed', e); }
       });
     }
-    if(push) history.pushState({page:name}, '', name==='home' ? '/' : `/${name}`);
   }catch(err){
     main.innerHTML = `<div class="page"><h2>Page not found</h2><p>Could not load '${name}'.</p></div>`;
   }
@@ -32,26 +31,38 @@ function linkHandler(e){
   if(!a) return;
   e.preventDefault();
   const page = a.getAttribute('data-page');
-  loadPage(page);
+  // use hash routing so GitHub Pages serves index/404 without server rewrites
+  if(!page || page === 'home'){
+    location.hash = '';
+  }else{
+    location.hash = page.startsWith('#') ? page : `#${page}`;
+  }
 }
 
-window.addEventListener('popstate', (ev)=>{
-  const state = ev.state && ev.state.page ? ev.state.page : 'home';
-  loadPage(state, false);
+// use hashchange for navigation (compatible with GitHub Pages)
+window.addEventListener('hashchange', ()=>{
+  const raw = location.hash.replace(/^#\/?/, '');
+  const name = raw || 'home';
+  loadPage(name);
 });
 
 document.addEventListener('DOMContentLoaded', ()=>{
   setYear();
   document.body.addEventListener('click', linkHandler);
-  // initial load: check path
-  const raw = window.location.pathname.replace(/^\/+/, '');
+  // initial load: prefer hash, fallback to root path
+  const rawHash = location.hash.replace(/^#\/?/, '');
+  if(rawHash){
+    loadPage(rawHash);
+    return;
+  }
+  // fallback to pathname (useful for local dev)
+  const rawPath = window.location.pathname.replace(/^\/+/, '');
   let name = 'home';
-  if(raw && raw !== 'index.html'){
-    const first = raw.split('/')[0];
-    // if it looks like a filename (has a dot) or a Windows drive, default to home
+  if(rawPath && rawPath !== 'index.html'){
+    const first = rawPath.split('/')[0];
     if(!first.includes('.') && !first.includes(':')){
       name = first || 'home';
     }
   }
-  loadPage(name, false);
+  loadPage(name);
 });
