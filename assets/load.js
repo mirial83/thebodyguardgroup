@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     loadPage(rawHash);
     return;
   }
-  // fallback to pathname (useful for local dev)
-  const rawPath = window.location.pathname.replace(/^\/+/, '');
+  // fallback to pathname (useful for local dev and project pages)
+  const rawPath = window.location.pathname.replace(/^\/+|\/+$/g, '');
   let name = 'home';
   if(rawPath && rawPath !== 'index.html'){
     const first = rawPath.split('/')[0];
@@ -69,5 +69,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
       name = first || 'home';
     }
   }
-  loadPage(name);
-});
+  // Try fetching the candidate page first; if it doesn't exist, fall back to 'home'.
+  (async ()=>{
+    try{
+      const candidateUrl = new URL(`pages/${name}.html`, location.href).href;
+      const r = await fetch(candidateUrl, {method:'GET'});
+      if(r.ok){
+        loadPage(name);
+        return;
+      }
+    }catch(e){
+        // initial load: prefer hash; otherwise always load 'home'
+        if(rawHash){
+          loadPage(rawHash);
+        } else {
+          loadPage('home');
+        }
