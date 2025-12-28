@@ -6,12 +6,17 @@ function setYear(){
 
 async function loadPage(name){
   const main = document.getElementById('main-content');
+  if(!main) return;
   try{
-    const res = await fetch(`pages/${name}.html`);
+    const url = new URL(`pages/${name}.html`, location.href).href;
+    const res = await fetch(url);
     if(!res.ok) throw new Error('Not found');
     const html = await res.text();
+    // ensure main is visible (defensive)
+    main.style.display = '';
     main.innerHTML = html;
-    main.focus();
+    // move focus for accessibility
+    try{ main.focus(); }catch(e){}
     // initialize any carousels present in the loaded content
     if(window.Carousel){
       const carousels = main.querySelectorAll('.carousel');
